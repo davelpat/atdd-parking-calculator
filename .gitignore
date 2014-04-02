@@ -2,6 +2,13 @@
 *.rbc
 .bundle
 .config
+.DS_Store
+.emacs.desktop
+.idea
+*.lock
+*#
+*~
+
 coverage
 InstalledFiles
 lib/bundler/man
