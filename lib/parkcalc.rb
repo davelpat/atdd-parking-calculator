@@ -1,4 +1,8 @@
 class ParkCalcPage
+  @@lotIdentifier = 'ParkingLot'
+  @@startingPrefix = 'Starting'
+  @@leavingPrefix = 'Leaving'
+
   attr :page
 
   def initialize(page_handle)
@@ -7,20 +11,21 @@ class ParkCalcPage
   end
 
   def select_location(lot)
-    @page.select_list(:id, 'ParkingLot').select(lot)
+    @page.select_list(:id, @@lotIdentifier).select(lot)
   end
 
   def enter_parking_duration(duration)
     case duration
       when '30 minutes'
-        @page.text_field(:id, 'StartingDate').set('4/1/2014')
-        @page.text_field(:id, 'StartingTime').set('12:00')
-        @page.radio(:name => 'StartingTimeAMPM', :value => 'PM').set
-
-        @page.text_field(:id, 'LeavingDate').set('4/1/2014')
-        @page.text_field(:id, 'LeavingTime').set('12:30')
-        @page.radio(:name => 'LeavingTimeAMPM', :value => 'PM').set
+        fill_in_date_and_time_for(@@startingPrefix, '4/1/2014', '12:00', 'PM')
+        fill_in_date_and_time_for(@@leavingPrefix, '4/1/2014', '12:30', 'PM')
     end
+  end
+
+  def fill_in_date_and_time_for(prefix, date, time, ampm)
+    @page.text_field(:id, "#{prefix + 'Date'}").set(date)
+    @page.text_field(:id, "#{prefix + 'Time'}").set(time)
+    @page.radio(:name => "#{prefix + 'TimeAMPM'}", :value => ampm).set
   end
 
   def calculated_fee()
