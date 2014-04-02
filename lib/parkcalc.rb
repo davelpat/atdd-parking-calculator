@@ -22,4 +22,9 @@ class ParkCalcPage
         @page.radio(:name => 'LeavingTimeAMPM', :value => 'PM').set
     end
   end
+
+  def calculated_fee()
+    @page.button(:name => 'Submit').click
+    @page.table.row(:text => /ESTIMATED PARKING COSTS/).cell(:index => 1).span(:index => 0).text
+  end
 end
