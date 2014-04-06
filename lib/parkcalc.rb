@@ -3,6 +3,10 @@ class ParkCalcPage
   @@startingPrefix = 'Starting'
   @@leavingPrefix = 'Leaving'
 
+  # array elements: date, time, and AM/PM for start of duration, then the same for when they leave
+  @@durationMap = {
+    '30 minutes' => ['4/1/2014', '12:00', 'PM', '4/1/2014', '12:30', 'PM']
+  }
   attr :page
 
   def initialize(page_handle)
@@ -15,11 +19,10 @@ class ParkCalcPage
   end
 
   def enter_parking_duration(duration)
-    case duration
-      when '30 minutes'
-        fill_in_date_and_time_for(@@startingPrefix, '4/1/2014', '12:00', 'PM')
-        fill_in_date_and_time_for(@@leavingPrefix, '4/1/2014', '12:30', 'PM')
-    end
+    startingDate, startingTime, startingTimeAMPM,
+        leavingDate, leavingTime, leavingTimeAMPM = @@durationMap[duration]
+    fill_in_date_and_time_for(@@startingPrefix, startingDate, startingTime, startingTimeAMPM)
+    fill_in_date_and_time_for(@@leavingPrefix, leavingDate, leavingTime, leavingTimeAMPM)
   end
 
   def fill_in_date_and_time_for(prefix, date, time, ampm)
