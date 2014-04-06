@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
 gem 'rspec', :require => 'spec'
 gem 'cucumber', '>= 1.3.10'
