@@ -1,4 +1,4 @@
-When(/^I park my car in the ([\w-]+ Parking) Lot for (.*)$/) do |lot, duration|
+When(/^I park my car in the ([\w -]+ Parking) Lot for (.*)$/) do |lot, duration|
   $parkcalc.select_location(lot)
   $parkcalc.enter_parking_duration(duration)
 end

@@ -1,7 +1,7 @@
 Feature: Economy Parking feature
   The parking lot calculator calculates costs for Economy Parking.
 
-  @Economy
+  @economy
   Scenario Outline: Calculate Economy Parking Cost
     When I park my car in the Economy Parking Lot for <duration>
     Then I will have to pay <expected_price>
