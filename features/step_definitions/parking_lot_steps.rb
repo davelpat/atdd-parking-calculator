@@ -4,7 +4,7 @@ When(/^I park my car in the ([\w -]+ Parking) Lot for (.*)$/) do |lot, duration|
 end
 
 Then(/^I will have to pay (.*)$/) do |expected_price|
-  $parkcalc.calculated_fee.should == expected_price
+  expect($parkcalc.calculated_fee).to eq(expected_price)
 end
 
 
